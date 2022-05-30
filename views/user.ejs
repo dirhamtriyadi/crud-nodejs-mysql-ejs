@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <table class="table table-hover table-striped table-bordered mt-4">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>nama</td>
+                    <td>password</td>
+                    <td>Dibuat</td>
+                    <td>Diubah</td>
+                    <td>Aksi</td>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (const user of users) { %>
+                <tr>
+                        <td><%= user.id %></td>
+                        <td><%= user.nama %></td>
+                        <td><%= user.password %></td>
+                        <td><%= user.createdAt %></td>
+                        <td><%= user.updatedAt %></td>
+                        <td>
+                            <a href="/edit/<%= user.id %>" class="btn btn-warning">Edit</a>
+                            <a href="/delete/<%= user.id %>" class="btn btn-danger">Hapus</a>
+                        </td>
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
+        <form action="/add" method="post">
+            <input type="hidden" name="id">
+            <div class="mb-3 mt-4">
+                <label for="nama" class="form-label">Nama</label>
+                <input type="text" class="form-control" id="nama" aria-describedby="emailHelp" name="nama">
+                <div id="namaHelp" class="form-text">Masukan nama lengkap</div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
